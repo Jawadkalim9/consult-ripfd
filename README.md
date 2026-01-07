@@ -87,7 +87,7 @@ Examples:
 
 ### `consult-ripfd-full`
 
-The "full" version provides complete access to the command line options of both `fd` and `rg`.  It does so by recognizing **two** `--` argument separators: 
+For when you need complete access to the full range of `rg` and `fd` options.  The "full" version provides complete access to the command line options of both `fd` and `rg`.  It does so by recognizing **two** `--` argument separators: 
 
 ```
     RG-PATTERNS -- FD-OPTS -- RG-OPTS
