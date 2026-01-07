@@ -1,21 +1,28 @@
-# consult-ripfd - a `ripgrep` + `fd` mashup using `consult`
+# consult-ripfd — a `ripgrep` + `fd` mashup in Emacs
 
-Ever want to find a line of text in a small `.txt` file you modified in the past week?  With `consult-ripfd`, that's just
+<img width="548" height="65" alt="image" src="https://github.com/user-attachments/assets/ffd15ade-ad06-4fed-af97-7aa623c612c5" />
 
+Ever needed to find a line of text in a small `.txt` file whose name and location you can't remember, but you know you modified in the past week?  
+
+Enter `consult-ripfd`:
 
 ```
-# search pat -- -n 1w -S -1k -E txt
+# search pat -- -n 1w -S -1k -e txt
 ```
 
-`ripgrep` is one of the most widely used tool for rapidly searching through files for patterns.  `fd` is a super-fast descendant of `find`, and can tear through large directory hierarchies finding files matching a wide array of criteria (filename, extension, modtime, file type, size, owner etc.).
+(newer than 1 week old, smaller than 1kb, `txt` extension)
 
-`consult-ripfd` brings these two super tools together into a single command, with all of the conveniences of [consult](https://github.com/minad/consult) you know and love: 
+## Intro
+
+`ripgrep` is one of the most widely used tools for rapidly searching through files for patterns.  `fd` is a super-fast descendant of `find`, and can tear through large directory hierarchies finding files which match a wide range of criteria (filename, extension, modtime, file type, size, owner etc.).
+
+`consult-ripfd` brings these two super tools together into a _single command_, with all of the conveniences of [consult](https://github.com/minad/consult) you know and love: 
 
 - dynamic live results with match count
 - instant async updating
 - grouping matches by files with quick navigation between them
 - match highlighting
-- easy export to a `grep` buffer using embark
+- easy export to a `grep` buffer using [`embark`](https://github.com/oantolin/embark)
 
 ## Install and configuration
 
@@ -38,7 +45,7 @@ There are two commands, both of which combine `fd` and `rg` into one search tool
 
 ### `consult-ripfd` 
 
-The main command presents an simplified interface with a curated,  list of the most useful options from both tools:
+The main command presents an simplified interface with a single curated list of the most useful options from both tools:
 
 ```
  RG-PATTERNS -- OPTION-FLAGS
@@ -69,24 +76,30 @@ The main command presents an simplified interface with a curated,  list of the m
 ```
 
 > [!WARNING]
-> Short options do not necessarily correspond to valid flags in the relevant tool.
+> Short options in this command do not necessarily correspond to valid flags in the relevant tool.
 
 Examples:
 
 - `#\beat\b -- -n 2025-12-31` : lines that contain the standalone word `eat` in files with modification times newer than new year's eve.
 - `# ^[\ \t]*$ --  -v -e py -d 3` : non-blank lines in `py` files at most 3 directories below the search dir.  Note the escaping of the space for consult.
-- `#[a-d]\{3\}$ -- -b 4w -S +7k -g org*.org` : lines ending with words composed of the letters `a-d` in large (>7kb) `org*.org` files last modified prior to 4 weeks ago.
+- `#[a-d]\{3\}$ -- -b 4w -S +100k -g org*.org` : lines ending 3 of the letters `a-d` in large (>100kb) `org*.org` files which were last modified prior to 4 weeks ago.
 
 
 ### `consult-ripfd-full`
 
-Provides complete access to the command line options of both `fd` and `rg`, by recognizing **two** `--` argument separators: 
+The "full" version provides complete access to the command line options of both `fd` and `rg`.  It does so by recognizing **two** `--` argument separators: 
 
 ```
     RG-PATTERNS -- FD-OPTS -- RG-OPTS
 ```
 
+Note that you can specify file pattern matches using the `fd` keyword argument `--and`.
+
 Example:
 
 - `#macro -- --changed-within 1w --  -A 2` : search for the word `macro` in files changed within the last week, and show two lines of context after each match.
+
+## Thanks
+
+The fantastic and highly flexible [consult](https://github.com/minad/consult) package does most of the work here.  Big thanks to Daniel Mendler for sharing it and making it so efficient and adaptable.
 
