@@ -3,8 +3,8 @@
 
 ;; Author: J.D. Smith <jdtsmith@gmail.com>
 ;; Homepage: https://github.com/jdtsmith/consult-ripfd
-;; Package-Requires: ((emacs "29.1") (consult "3.1"))
-;; Version: 0.1
+;; Package-Requires: ((emacs "29.1") (consult "3.3"))
+;; Version: 0.2
 ;; Keywords: convenience
 
 ;; consult-ripfd is free software: you can redistribute it and/or
@@ -131,8 +131,8 @@ The returned option strings are (RG-OPTS FD-OPTS)."
 				      (unless (member "-t" fd-opts) '("-t" "f"))
 				      path-flags))
 		      (rg-cmd (funcall rg-builder
-				       (concat args " -- "
-					       (combine-and-quote-strings rg-opts)))))
+				       (concat (combine-and-quote-strings rg-opts) " -- "
+					       args))))
 	    (cons (append fd-cmd (and (car rg-cmd) `("-X" ,@(car rg-cmd))))
 		  (cdr rg-cmd))))))))
 
